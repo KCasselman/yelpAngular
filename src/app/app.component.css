@@ -1,0 +1,20 @@
+.inline {
+    margin-left: 20px;
+}
+
+.input {
+    border: .2px solid black;
+}
+
+.button {
+    height: 50px;
+    width: 100px;
+    border-radius: 1em;
+    background-color: red;
+    font-size: 25px;
+}
+
+.display img {
+    height: 300px;
+    width: 300px;
+}
