@@ -21,17 +21,23 @@ export class AppComponent implements OnInit{
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-  }
-
-  getRandom() {
-
+    return (this.http.get<any>(`${this.baseUrl}/businesses/search?location=Indiana Indianapolis&price=1&open_now=true`))
+    .pipe(map(res => {
+      console.log(res.businesses)
+      console.log(res)
+      this.restaurants = res
+      this.random = res.businesses
+      this.randomBusinesses = new Array(this.random[Math.floor(Math.random() * res.businesses.length)])
+      console.log(this.randomBusinesses)
+    }))
+    .subscribe()
   }
 
     onEnter(state: string, city: string, price: string) {
       this._price = price.valueOf();
       this._city = city;
       this._state = state;
-      return (this.http.get<any>(`${this.baseUrl}/businesses/search?location=${this._state} ${this._city}&price=${this._price}`))
+      return (this.http.get<any>(`${this.baseUrl}/businesses/search?location=${this._state} ${this._city}&price=${this._price}&open_now=true`))
       .pipe(map(res => {
         console.log(res.businesses)
         console.log(res)

@@ -1,48 +1,115 @@
+<div class="mainYelp">
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Welp!</mat-card-title>
-    <mat-card-subtitle>Find a random restaurant. Powered by the Yelp API.</mat-card-subtitle>
+  <mat-card-header class="titleWrap">
+    <mat-card-title class="mainTitle">Welp!</mat-card-title>
+    <mat-card-subtitle class="subTitle">Find a random restaurant. Powered by the Yelp API.</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="search">
-          <span class="inline">
+          <div class="inline-block">
           <mat-form-field>
-            <h4>Price Points</h4>
-              <mat-select #price>
-                  <mat-option value="0">--</mat-option>
-                  <mat-option value="1">$</mat-option>
-                  <mat-option value="2">$$</mat-option>
-                  <mat-option value="3">$$$</mat-option>
-                  <mat-option value="4">$$$$</mat-option>
-              </mat-select>
+            <h4 class="price">Price Points</h4>
+              <select matNativeControl #price id="block">
+                  <option value="0">--</option>
+                  <option value="1">$</option>
+                  <option value="2">$$</option>
+                  <option value="3">$$$</option>
+                  <option value="4">$$$$</option>
+              </select>
             </mat-form-field>
-          </span>
-          <span class="inline">
+          </div>
+          <div class="inline-block">
           <mat-form-field>
-            <h4>City</h4>
-            <input #city class = "input" matInput>
+            <h4 class="city">City</h4>
+            <input #city class="input" matInput placeholder="">
           </mat-form-field>
-        </span>
-          <span class="inline">
+        </div>
+          <div class="inline-block">
           <mat-form-field>
-            <h4>State</h4>
-              <input #state class = "input" matInput>
+            <h4 class="state">State</h4>
+            <select matNativeControl required #state id="block" >
+              <option  value="0">--</option>
+              <option  value="1">Alabama</option>
+              <option  value="2">Alaska</option>
+              <option  value="3">Arizona</option>
+              <option  value="4">Arkansas</option>
+              <option  value="5">California</option>
+              <option  value="6">Colorado</option>
+              <option  value="7">Connecticut</option>
+              <option  value="8">Delaware</option>
+              <option  value="9">District Of Columbia</option>
+              <option  value="10">Florida</option>
+              <option  value="11">Georgia</option>
+              <option  value="12">Hawaii</option>
+              <option  value="13">Idaho</option>
+              <option  value="14">Illinois</option>
+              <option  value="15">Indiana</option>
+              <option  value="16">Iowa</option>
+              <option  value="17">Kansas</option>
+              <option  value="18">Kentucky</option>
+              <option  value="19">Louisiana</option>
+              <option  value="20">Maine</option>
+              <option  value="21">Maryland</option>
+              <option  value="22">Massachusetts</option>
+              <option  value="23">Michigan</option>
+              <option  value="24">Minnesota</option>
+              <option  value="25">Mississippi</option>
+              <option  value="26">Missouri</option>
+              <option  value="27">Montana</option>
+              <option  value="28">Nebraska</option>
+              <option  value="29">Nevada</option>
+              <option  value="30">New Hampshire</option>
+              <option  value="31">New Jersey</option>
+              <option  value="32">New Mexico</option>
+              <option  value="33">New York</option>
+              <option  value="34">North Carolina</option>
+              <option  value="35">North Dakota</option>
+              <option  value="36">Ohio</option>
+              <option  value="37">Oklahoma</option>
+              <option  value="38">Oregon</option>
+              <option  value="39">Pennsylvania</option>
+              <option  value="40">Rhode Island</option>
+              <option  value="41">South Carolina</option>
+              <option  value="42">South Dakota</option>
+              <option  value="43">Tennessee</option>
+              <option  value="44">Texas</option>
+              <option  value="45">Utah</option>
+              <option  value="46">Vermont</option>
+              <option  value="47">Virginia</option>
+              <option  value="48">Washington</option>
+              <option  value="49">West Virginia</option>
+              <option  value="50">Wisconsin</option>
+              <option  value="51">Wyoming</option>
+            </select>	
             </mat-form-field>
-          </span>
-          <span class="inline">
+          </div>
+          <div class="button-inline-block">
             <button class="button" mat-button (click)="onEnter(state.value, city.value, price.value)">Enter</button>
-          </span>
+          </div>
   </mat-card-content>
   <mat-card-content class="display" *ngFor="let randomBusiness of randomBusinesses">
-    <div><img mat-card-image src="{{randomBusiness.image_url}}" alt="{{randomBusiness.image_url}}"></div>
-    <div>{{randomBusiness.rating}}</div>
-    <div>{{randomBusiness.name}}</div>
-    <div>{{randomBusiness.location.display_address[0]}}</div>
-    <div>{{randomBusiness.location.display_address[1]}}</div>
-    <div>{{randomBusiness.display_phone}}</div>
-    <div *ngIf="randomBusiness.transactions.length === 1">Offers {{randomBusiness.transactions[0]}}</div>
-    <div *ngIf="randomBusiness.transactions.length === 2">Offers {{randomBusiness.transactions[0]}} and {{randomBusiness.transactions[1]}}</div>
-    <div *ngIf="randomBusiness.transactions.length === 0 || null">Does not offer delivery</div>
+    <div class="bizImage"><img mat-card-image src="{{randomBusiness.image_url}}" alt="{{randomBusiness.image_url}}"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 0"><img mat-card-image src="../assets/regular_0.png" alt="../assets/regular_0.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 1"><img mat-card-image src="../assets/regular_1.png" alt="../assets/regular_1.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 1.5"><img mat-card-image src="../assets/regular_1_half.png" alt="../assets/regular_1_half.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 2"><img mat-card-image src="../assets/regular_2.png" alt="../assets/regular_2.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 2.5"><img mat-card-image src="../assets/regular_2_half.png" alt="../assets/regular_2_half.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 3"><img mat-card-image src="../assets/regular_3.png" alt="../assets/regular_3.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 3.5"><img mat-card-image src="../assets/regular_3_half.png" alt="../assets/regular_3_half.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 4"><img mat-card-image src="../assets/regular_4.png" alt="../assets/regular_4.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 4.5"><img mat-card-image src="../assets/regular_4_half.png" alt="../assets/regular_4_half.png"></div>
+    <div class="starImage" *ngIf="randomBusiness.rating === 5"><img mat-card-image src="../assets/regular_5.png" alt="../assets/regular_5.png"></div>
+    <div class="bizName">{{randomBusiness.name}}</div>
+    <div class="random">
+      <div class="bizAddress1">{{randomBusiness.location.display_address[0]}}</div>
+      <div class="bizAddress2">{{randomBusiness.location.display_address[1]}}</div>
+      <div class="bizPhone">{{randomBusiness.display_phone}}</div>
+      <div class="bizOffers" *ngIf="randomBusiness.transactions.length === 1">Offers {{randomBusiness.transactions[0]}}</div>
+      <div class="bizOffers" *ngIf="randomBusiness.transactions.length === 2">Offers {{randomBusiness.transactions[0]}} and {{randomBusiness.transactions[1]}}</div>
+      <div class="bizOffers" *ngIf="randomBusiness.transactions.length === 3">Offers {{randomBusiness.transactions[0]}}, {{randomBusiness.transactions[1]}}, and {{randomBusiness.transactions[2]}}</div>
+      <div class="bizOffers" *ngIf="randomBusiness.transactions.length === 0 || null">Does not offer delivery</div>
+  </div>
   </mat-card-content>
 </mat-card>
+</div>
 <router-outlet></router-outlet>
 
